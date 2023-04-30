@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  toplearndb:
+    container_name: toplearn_appdb
+    build:
+      context: .
+    ports:
+      - "9090:9090"
+    environment:
+      - PORT=9090
+      - DB_HOST=192.168.1.79
+      - DB_PORT=5555
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=toplearn
+      - DB_TYPE=postgres
+    restart: on-failure
