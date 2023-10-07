@@ -12,11 +12,19 @@ import {
 } from '@nestjs/common';
 import { CreateUserDTO, UpdateUserDTO } from './dtos';
 import { UsersService } from './users.service';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { User } from './users.entity';
 
 @Controller({ version: '1', path: 'users' })
 export class UsersController {
   @Inject(UsersService)
   private readonly usersService: UsersService;
+
+  @Get('/profile')
+  @UseGuards(JwtAuthGuard)
+  getProfile(@CurrentUser() user: User) {
+    return this.usersService.selectById(user.id);
+  }
 
   @Post()
   createUser(@Body() body: CreateUserDTO) {
