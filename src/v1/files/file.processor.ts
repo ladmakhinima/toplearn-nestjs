@@ -8,6 +8,7 @@ export class FileProcessor {
   createFile(
     process: Job<{ file: Express.Multer.File; customFilename: string }>,
   ) {
+    console.log('--------------');
     const buffer = (process.data.file.buffer as any).data;
     const readbleStream = new Readable();
     const writeStream = createWriteStream(

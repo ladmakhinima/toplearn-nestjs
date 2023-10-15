@@ -105,7 +105,10 @@ export class UsersService {
   }
 
   async selectById(id: number) {
-    const user = await this.userRepo.select({ id, status: UserStatus.ACTIVE });
+    const user = await this.userRepo.select(
+      { id, status: UserStatus.ACTIVE },
+      { image: true },
+    );
     if (!user) {
       throw new NotFoundException('user not found');
     }

@@ -11,6 +11,6 @@ export class CreateCategoryDTO {
   slug: string;
 
   @IsOptional()
-  @IsInt()
+  @IsString()
   parent?: Category | number;
 }

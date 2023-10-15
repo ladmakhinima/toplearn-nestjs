@@ -49,6 +49,7 @@ export class CategoriesService {
 
   async update(id: number, data: UpdateCategoryDTO) {
     const isCategoryExist = await this.genericRepo.selectById(id);
+    console.log(':::::', data);
     if (!isCategoryExist) {
       throw new NotFoundException('category is not exist');
     }
@@ -74,9 +75,7 @@ export class CategoriesService {
     }
     if (data.parent) {
       data.parent = await this.genericRepo.select({
-        parent: {
-          id: data.parent as number,
-        },
+        id: data.parent as number,
       });
 
       if (!data.parent) {

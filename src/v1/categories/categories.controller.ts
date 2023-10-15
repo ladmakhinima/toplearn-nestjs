@@ -20,13 +20,13 @@ export class CategoriesController {
   @Inject(CategoriesService)
   private readonly categoriesService: CategoriesService;
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   createCategory(@Body() body: CreateCategoryDTO) {
     return this.categoriesService.create(body);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Patch(':id')
   updateCategory(
     @Param('id', ParseIntPipe) id: number,
@@ -35,7 +35,7 @@ export class CategoriesController {
     return this.categoriesService.update(id, body);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deleteCategory(@Param('id', ParseIntPipe) id: number) {
     return this.categoriesService.delete(id);

@@ -48,8 +48,11 @@ export class GenericRepository<T extends CoreEntity> implements IRepository<T> {
     `);
     return this.model.delete(where);
   }
-  select(where: FindOptionsWhere<T> | FindOptionsWhere<T>[]): Promise<T> {
-    return this.model.findOne({ where }) as Promise<T>;
+  select(
+    where: FindOptionsWhere<T> | FindOptionsWhere<T>[],
+    relations: object = {},
+  ): Promise<T> {
+    return this.model.findOne({ where, relations }) as Promise<T>;
   }
   selectAll(where: FindOptionsWhere<T> = {}): Promise<T[]> {
     const relation = GetRelation(this.model);

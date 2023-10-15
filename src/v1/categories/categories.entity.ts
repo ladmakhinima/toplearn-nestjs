@@ -1,6 +1,13 @@
 import { CoreEntity } from 'src/common/core/core.entity';
+import { FindOneKey, Relation } from 'src/common/decorators/relation.decorator';
 import { Column, Entity, Tree, TreeChildren, TreeParent } from 'typeorm';
 
+@Relation({
+  [FindOneKey]: {
+    parent: true,
+    subcategory: true,
+  },
+})
 @Tree('materialized-path')
 @Entity({ name: '_categories' })
 export class Category extends CoreEntity {
@@ -9,9 +16,6 @@ export class Category extends CoreEntity {
 
   @Column('varchar', { unique: true, name: 'slug', nullable: false })
   slug: string;
-
-  //5022 2913 0570 2068
-  // 761
 
   @TreeParent()
   parent: Category;

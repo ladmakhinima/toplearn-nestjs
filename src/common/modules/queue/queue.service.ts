@@ -12,7 +12,7 @@ export class QueueService implements SharedBullConfigurationFactory {
     return {
       redis: {
         host: 'localhost',
-        port: 6379,
+        port: 6377,
       },
     };
   }
